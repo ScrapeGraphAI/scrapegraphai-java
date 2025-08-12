@@ -183,6 +183,76 @@ CompletableFuture<CompletedSmartscraper> completedSmartscraper = client.smartscr
 
 The asynchronous client supports the same options as the synchronous one, except most methods return `CompletableFuture`s.
 
+## Examples
+
+The `scrapegraphai-java-example` module contains comprehensive examples demonstrating all SDK features:
+
+### Running Examples
+
+Run the basic example:
+```bash
+./gradlew :scrapegraphai-java-example:run
+```
+
+Run specific examples:
+```bash
+# SmartScraper examples
+./gradlew :scrapegraphai-java-example:run -Pexample=Smartscraper
+
+# SearchScraper examples  
+./gradlew :scrapegraphai-java-example:run -Pexample=Searchscraper
+
+# Crawl examples
+./gradlew :scrapegraphai-java-example:run -Pexample=Crawl
+
+# Markdownify examples
+./gradlew :scrapegraphai-java-example:run -Pexample=Markdownify
+
+# Async examples
+./gradlew :scrapegraphai-java-example:run -Pexample=Async
+
+# Schema Generation examples
+./gradlew :scrapegraphai-java-example:run -Pexample=SchemaGeneration
+
+# Utility examples (validation, health, credits)
+./gradlew :scrapegraphai-java-example:run -Pexample=Utility
+```
+
+### Example Categories
+
+| Example | Description | Features Demonstrated |
+|---------|-------------|----------------------|
+| **Main** | Basic SmartScraper usage | Simple scraping, error handling |
+| **SmartscraperExample** | Comprehensive scraping scenarios | Custom schemas, pagination, JavaScript rendering, headers/cookies |
+| **SearchscraperExample** | Web search + scraping | Multi-source data aggregation, product comparison, news aggregation |
+| **CrawlExample** | Website crawling | Site exploration, path filtering, progress monitoring |
+| **MarkdownifyExample** | HTML to Markdown conversion | Content formatting, documentation generation |
+| **AsyncExample** | Asynchronous operations | Non-blocking requests, parallel processing, error handling |
+| **SchemaGenerationExample** | Automatic schema creation | Schema analysis, structured data extraction |
+| **UtilityExample** | Service utilities | API validation, health checks, credit monitoring, feedback |
+
+### Quick Start Example
+
+```java
+import com.scrapegraphai.api.client.ScrapegraphaiClient;
+import com.scrapegraphai.api.client.okhttp.ScrapegraphaiOkHttpClient;
+import com.scrapegraphai.api.models.smartscraper.CompletedSmartscraper;
+import com.scrapegraphai.api.models.smartscraper.SmartscraperCreateParams;
+
+// Initialize client (reads from SCRAPEGRAPHAI_API_KEY environment variable)
+ScrapegraphaiClient client = ScrapegraphaiOkHttpClient.fromEnv();
+
+// Create scraping request
+SmartscraperCreateParams params = SmartscraperCreateParams.builder()
+    .userPrompt("Extract the main heading and description")
+    .websiteUrl("https://example.com")
+    .build();
+
+// Execute scraping
+CompletedSmartscraper result = client.smartscraper().create(params);
+System.out.println("Extracted data: " + result.result());
+```
+
 ## Raw responses
 
 The SDK defines methods that deserialize responses into instances of Java classes. However, these methods don't provide access to the response headers, status code, or the raw response body.
