@@ -26,9 +26,9 @@ configure<PublishingExtension> {
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/stainless-sdks/scrapegraphai-java.git")
-                    developerConnection.set("scm:git:git://github.com/stainless-sdks/scrapegraphai-java.git")
-                    url.set("https://github.com/stainless-sdks/scrapegraphai-java")
+                    connection.set("scm:git:git://github.com/ScrapeGraphAI/scrapegraphai-java.git")
+                    developerConnection.set("scm:git:git://github.com/ScrapeGraphAI/scrapegraphai-java.git")
+                    url.set("https://github.com/ScrapeGraphAI/scrapegraphai-java")
                 }
 
                 versionMapping {
