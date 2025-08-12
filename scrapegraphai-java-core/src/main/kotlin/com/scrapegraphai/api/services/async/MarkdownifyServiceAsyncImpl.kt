@@ -1,0 +1,130 @@
+// File generated from our OpenAPI spec by Stainless.
+
+package com.scrapegraphai.api.services.async
+
+import com.scrapegraphai.api.core.ClientOptions
+import com.scrapegraphai.api.core.RequestOptions
+import com.scrapegraphai.api.core.checkRequired
+import com.scrapegraphai.api.core.handlers.errorBodyHandler
+import com.scrapegraphai.api.core.handlers.errorHandler
+import com.scrapegraphai.api.core.handlers.jsonHandler
+import com.scrapegraphai.api.core.http.HttpMethod
+import com.scrapegraphai.api.core.http.HttpRequest
+import com.scrapegraphai.api.core.http.HttpResponse
+import com.scrapegraphai.api.core.http.HttpResponse.Handler
+import com.scrapegraphai.api.core.http.HttpResponseFor
+import com.scrapegraphai.api.core.http.json
+import com.scrapegraphai.api.core.http.parseable
+import com.scrapegraphai.api.core.prepareAsync
+import com.scrapegraphai.api.models.markdownify.CompletedMarkdownify
+import com.scrapegraphai.api.models.markdownify.MarkdownifyConvertParams
+import com.scrapegraphai.api.models.markdownify.MarkdownifyRetrieveStatusParams
+import com.scrapegraphai.api.models.markdownify.MarkdownifyRetrieveStatusResponse
+import java.util.concurrent.CompletableFuture
+import java.util.function.Consumer
+import kotlin.jvm.optionals.getOrNull
+
+class MarkdownifyServiceAsyncImpl internal constructor(private val clientOptions: ClientOptions) :
+    MarkdownifyServiceAsync {
+
+    private val withRawResponse: MarkdownifyServiceAsync.WithRawResponse by lazy {
+        WithRawResponseImpl(clientOptions)
+    }
+
+    override fun withRawResponse(): MarkdownifyServiceAsync.WithRawResponse = withRawResponse
+
+    override fun withOptions(modifier: Consumer<ClientOptions.Builder>): MarkdownifyServiceAsync =
+        MarkdownifyServiceAsyncImpl(clientOptions.toBuilder().apply(modifier::accept).build())
+
+    override fun convert(
+        params: MarkdownifyConvertParams,
+        requestOptions: RequestOptions,
+    ): CompletableFuture<CompletedMarkdownify> =
+        // post /markdownify
+        withRawResponse().convert(params, requestOptions).thenApply { it.parse() }
+
+    override fun retrieveStatus(
+        params: MarkdownifyRetrieveStatusParams,
+        requestOptions: RequestOptions,
+    ): CompletableFuture<MarkdownifyRetrieveStatusResponse> =
+        // get /markdownify/{request_id}
+        withRawResponse().retrieveStatus(params, requestOptions).thenApply { it.parse() }
+
+    class WithRawResponseImpl internal constructor(private val clientOptions: ClientOptions) :
+        MarkdownifyServiceAsync.WithRawResponse {
+
+        private val errorHandler: Handler<HttpResponse> =
+            errorHandler(errorBodyHandler(clientOptions.jsonMapper))
+
+        override fun withOptions(
+            modifier: Consumer<ClientOptions.Builder>
+        ): MarkdownifyServiceAsync.WithRawResponse =
+            MarkdownifyServiceAsyncImpl.WithRawResponseImpl(
+                clientOptions.toBuilder().apply(modifier::accept).build()
+            )
+
+        private val convertHandler: Handler<CompletedMarkdownify> =
+            jsonHandler<CompletedMarkdownify>(clientOptions.jsonMapper)
+
+        override fun convert(
+            params: MarkdownifyConvertParams,
+            requestOptions: RequestOptions,
+        ): CompletableFuture<HttpResponseFor<CompletedMarkdownify>> {
+            val request =
+                HttpRequest.builder()
+                    .method(HttpMethod.POST)
+                    .baseUrl(clientOptions.baseUrl())
+                    .addPathSegments("markdownify")
+                    .body(json(clientOptions.jsonMapper, params._body()))
+                    .build()
+                    .prepareAsync(clientOptions, params)
+            val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
+            return request
+                .thenComposeAsync { clientOptions.httpClient.executeAsync(it, requestOptions) }
+                .thenApply { response ->
+                    errorHandler.handle(response).parseable {
+                        response
+                            .use { convertHandler.handle(it) }
+                            .also {
+                                if (requestOptions.responseValidation!!) {
+                                    it.validate()
+                                }
+                            }
+                    }
+                }
+        }
+
+        private val retrieveStatusHandler: Handler<MarkdownifyRetrieveStatusResponse> =
+            jsonHandler<MarkdownifyRetrieveStatusResponse>(clientOptions.jsonMapper)
+
+        override fun retrieveStatus(
+            params: MarkdownifyRetrieveStatusParams,
+            requestOptions: RequestOptions,
+        ): CompletableFuture<HttpResponseFor<MarkdownifyRetrieveStatusResponse>> {
+            // We check here instead of in the params builder because this can be specified
+            // positionally or in the params class.
+            checkRequired("requestId", params.requestId().getOrNull())
+            val request =
+                HttpRequest.builder()
+                    .method(HttpMethod.GET)
+                    .baseUrl(clientOptions.baseUrl())
+                    .addPathSegments("markdownify", params._pathParam(0))
+                    .build()
+                    .prepareAsync(clientOptions, params)
+            val requestOptions = requestOptions.applyDefaults(RequestOptions.from(clientOptions))
+            return request
+                .thenComposeAsync { clientOptions.httpClient.executeAsync(it, requestOptions) }
+                .thenApply { response ->
+                    errorHandler.handle(response).parseable {
+                        response
+                            .use { retrieveStatusHandler.handle(it) }
+                            .also {
+                                if (requestOptions.responseValidation!!) {
+                                    it.validate()
+                                }
+                            }
+                    }
+                }
+        }
+    }
+}
