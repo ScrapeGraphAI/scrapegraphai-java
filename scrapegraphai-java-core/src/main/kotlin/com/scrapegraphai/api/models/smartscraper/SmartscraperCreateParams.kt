@@ -975,12 +975,35 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Body && userPrompt == other.userPrompt && cookies == other.cookies && headers == other.headers && numberOfScrolls == other.numberOfScrolls && outputSchema == other.outputSchema && renderHeavyJs == other.renderHeavyJs && steps == other.steps && totalPages == other.totalPages && websiteHtml == other.websiteHtml && websiteUrl == other.websiteUrl && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Body &&
+                userPrompt == other.userPrompt &&
+                cookies == other.cookies &&
+                headers == other.headers &&
+                numberOfScrolls == other.numberOfScrolls &&
+                outputSchema == other.outputSchema &&
+                renderHeavyJs == other.renderHeavyJs &&
+                steps == other.steps &&
+                totalPages == other.totalPages &&
+                websiteHtml == other.websiteHtml &&
+                websiteUrl == other.websiteUrl &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(userPrompt, cookies, headers, numberOfScrolls, outputSchema, renderHeavyJs, steps, totalPages, websiteHtml, websiteUrl, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(
+                userPrompt,
+                cookies,
+                headers,
+                numberOfScrolls,
+                outputSchema,
+                renderHeavyJs,
+                steps,
+                totalPages,
+                websiteHtml,
+                websiteUrl,
+                additionalProperties,
+            )
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -1078,12 +1101,10 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Cookies && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Cookies && additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
         private val hashCode: Int by lazy { Objects.hash(additionalProperties) }
-        /* spotless:on */
 
         override fun hashCode(): Int = hashCode
 
@@ -1180,12 +1201,10 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Headers && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Headers && additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
         private val hashCode: Int by lazy { Objects.hash(additionalProperties) }
-        /* spotless:on */
 
         override fun hashCode(): Int = hashCode
 
@@ -1197,10 +1216,13 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SmartscraperCreateParams && body == other.body && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is SmartscraperCreateParams &&
+            body == other.body &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(body, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int = Objects.hash(body, additionalHeaders, additionalQueryParams)
 
     override fun toString() =
         "SmartscraperCreateParams{body=$body, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"

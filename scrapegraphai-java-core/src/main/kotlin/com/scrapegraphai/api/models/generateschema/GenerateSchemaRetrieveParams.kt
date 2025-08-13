@@ -182,10 +182,13 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is GenerateSchemaRetrieveParams && requestId == other.requestId && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is GenerateSchemaRetrieveParams &&
+            requestId == other.requestId &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(requestId, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int = Objects.hash(requestId, additionalHeaders, additionalQueryParams)
 
     override fun toString() =
         "GenerateSchemaRetrieveParams{requestId=$requestId, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"
