@@ -124,10 +124,12 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SearchscraperRetrieveStatusResponse && completedSearchScraper == other.completedSearchScraper && failedSearchScraper == other.failedSearchScraper /* spotless:on */
+        return other is SearchscraperRetrieveStatusResponse &&
+            completedSearchScraper == other.completedSearchScraper &&
+            failedSearchScraper == other.failedSearchScraper
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(completedSearchScraper, failedSearchScraper) /* spotless:on */
+    override fun hashCode(): Int = Objects.hash(completedSearchScraper, failedSearchScraper)
 
     override fun toString(): String =
         when {
@@ -681,7 +683,7 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Status && value == other.value /* spotless:on */
+                return other is Status && value == other.value
             }
 
             override fun hashCode() = value.hashCode()
@@ -694,12 +696,29 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is FailedSearchScraperResponse && error == other.error && numResults == other.numResults && referenceUrls == other.referenceUrls && requestId == other.requestId && result == other.result && status == other.status && userPrompt == other.userPrompt && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is FailedSearchScraperResponse &&
+                error == other.error &&
+                numResults == other.numResults &&
+                referenceUrls == other.referenceUrls &&
+                requestId == other.requestId &&
+                result == other.result &&
+                status == other.status &&
+                userPrompt == other.userPrompt &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(error, numResults, referenceUrls, requestId, result, status, userPrompt, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(
+                error,
+                numResults,
+                referenceUrls,
+                requestId,
+                result,
+                status,
+                userPrompt,
+                additionalProperties,
+            )
+        }
 
         override fun hashCode(): Int = hashCode
 

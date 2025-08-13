@@ -416,7 +416,7 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Status && value == other.value /* spotless:on */
+            return other is Status && value == other.value
         }
 
         override fun hashCode() = value.hashCode()
@@ -429,12 +429,19 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is CompletedSmartscraper && error == other.error && requestId == other.requestId && result == other.result && status == other.status && userPrompt == other.userPrompt && websiteUrl == other.websiteUrl && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is CompletedSmartscraper &&
+            error == other.error &&
+            requestId == other.requestId &&
+            result == other.result &&
+            status == other.status &&
+            userPrompt == other.userPrompt &&
+            websiteUrl == other.websiteUrl &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
-    private val hashCode: Int by lazy { Objects.hash(error, requestId, result, status, userPrompt, websiteUrl, additionalProperties) }
-    /* spotless:on */
+    private val hashCode: Int by lazy {
+        Objects.hash(error, requestId, result, status, userPrompt, websiteUrl, additionalProperties)
+    }
 
     override fun hashCode(): Int = hashCode
 

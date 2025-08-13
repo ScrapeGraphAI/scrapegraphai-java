@@ -197,12 +197,15 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is CreditRetrieveResponse && remainingCredits == other.remainingCredits && totalCreditsUsed == other.totalCreditsUsed && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is CreditRetrieveResponse &&
+            remainingCredits == other.remainingCredits &&
+            totalCreditsUsed == other.totalCreditsUsed &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
-    private val hashCode: Int by lazy { Objects.hash(remainingCredits, totalCreditsUsed, additionalProperties) }
-    /* spotless:on */
+    private val hashCode: Int by lazy {
+        Objects.hash(remainingCredits, totalCreditsUsed, additionalProperties)
+    }
 
     override fun hashCode(): Int = hashCode
 

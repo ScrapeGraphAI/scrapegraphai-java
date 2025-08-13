@@ -420,12 +420,15 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Body && userPrompt == other.userPrompt && existingSchema == other.existingSchema && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Body &&
+                userPrompt == other.userPrompt &&
+                existingSchema == other.existingSchema &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(userPrompt, existingSchema, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(userPrompt, existingSchema, additionalProperties)
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -438,10 +441,13 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is GenerateSchemaCreateParams && body == other.body && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is GenerateSchemaCreateParams &&
+            body == other.body &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(body, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int = Objects.hash(body, additionalHeaders, additionalQueryParams)
 
     override fun toString() =
         "GenerateSchemaCreateParams{body=$body, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"
