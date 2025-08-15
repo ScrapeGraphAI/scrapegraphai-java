@@ -248,12 +248,17 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is FeedbackSubmitResponse && feedbackId == other.feedbackId && feedbackTimestamp == other.feedbackTimestamp && message == other.message && requestId == other.requestId && additionalProperties == other.additionalProperties /* spotless:on */
+        return other is FeedbackSubmitResponse &&
+            feedbackId == other.feedbackId &&
+            feedbackTimestamp == other.feedbackTimestamp &&
+            message == other.message &&
+            requestId == other.requestId &&
+            additionalProperties == other.additionalProperties
     }
 
-    /* spotless:off */
-    private val hashCode: Int by lazy { Objects.hash(feedbackId, feedbackTimestamp, message, requestId, additionalProperties) }
-    /* spotless:on */
+    private val hashCode: Int by lazy {
+        Objects.hash(feedbackId, feedbackTimestamp, message, requestId, additionalProperties)
+    }
 
     override fun hashCode(): Int = hashCode
 

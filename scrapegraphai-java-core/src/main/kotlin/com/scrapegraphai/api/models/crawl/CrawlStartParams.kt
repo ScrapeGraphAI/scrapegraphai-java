@@ -865,12 +865,33 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Body && url == other.url && depth == other.depth && extractionMode == other.extractionMode && maxPages == other.maxPages && prompt == other.prompt && renderHeavyJs == other.renderHeavyJs && rules == other.rules && schema == other.schema && sitemap == other.sitemap && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Body &&
+                url == other.url &&
+                depth == other.depth &&
+                extractionMode == other.extractionMode &&
+                maxPages == other.maxPages &&
+                prompt == other.prompt &&
+                renderHeavyJs == other.renderHeavyJs &&
+                rules == other.rules &&
+                schema == other.schema &&
+                sitemap == other.sitemap &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(url, depth, extractionMode, maxPages, prompt, renderHeavyJs, rules, schema, sitemap, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(
+                url,
+                depth,
+                extractionMode,
+                maxPages,
+                prompt,
+                renderHeavyJs,
+                rules,
+                schema,
+                sitemap,
+                additionalProperties,
+            )
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -1065,12 +1086,15 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is Rules && exclude == other.exclude && sameDomain == other.sameDomain && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is Rules &&
+                exclude == other.exclude &&
+                sameDomain == other.sameDomain &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(exclude, sameDomain, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(exclude, sameDomain, additionalProperties)
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -1083,10 +1107,13 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is CrawlStartParams && body == other.body && additionalHeaders == other.additionalHeaders && additionalQueryParams == other.additionalQueryParams /* spotless:on */
+        return other is CrawlStartParams &&
+            body == other.body &&
+            additionalHeaders == other.additionalHeaders &&
+            additionalQueryParams == other.additionalQueryParams
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(body, additionalHeaders, additionalQueryParams) /* spotless:on */
+    override fun hashCode(): Int = Objects.hash(body, additionalHeaders, additionalQueryParams)
 
     override fun toString() =
         "CrawlStartParams{body=$body, additionalHeaders=$additionalHeaders, additionalQueryParams=$additionalQueryParams}"

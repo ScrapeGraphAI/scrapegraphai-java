@@ -123,10 +123,12 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is GenerateSchemaRetrieveResponse && completedSchemaGeneration == other.completedSchemaGeneration && failedSchemaGeneration == other.failedSchemaGeneration /* spotless:on */
+        return other is GenerateSchemaRetrieveResponse &&
+            completedSchemaGeneration == other.completedSchemaGeneration &&
+            failedSchemaGeneration == other.failedSchemaGeneration
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(completedSchemaGeneration, failedSchemaGeneration) /* spotless:on */
+    override fun hashCode(): Int = Objects.hash(completedSchemaGeneration, failedSchemaGeneration)
 
     override fun toString(): String =
         when {
@@ -643,7 +645,7 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Status && value == other.value /* spotless:on */
+                return other is Status && value == other.value
             }
 
             override fun hashCode() = value.hashCode()
@@ -656,12 +658,27 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is CompletedSchemaGenerationResponse && error == other.error && generatedSchema == other.generatedSchema && refinedPrompt == other.refinedPrompt && requestId == other.requestId && status == other.status && userPrompt == other.userPrompt && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is CompletedSchemaGenerationResponse &&
+                error == other.error &&
+                generatedSchema == other.generatedSchema &&
+                refinedPrompt == other.refinedPrompt &&
+                requestId == other.requestId &&
+                status == other.status &&
+                userPrompt == other.userPrompt &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(error, generatedSchema, refinedPrompt, requestId, status, userPrompt, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(
+                error,
+                generatedSchema,
+                refinedPrompt,
+                requestId,
+                status,
+                userPrompt,
+                additionalProperties,
+            )
+        }
 
         override fun hashCode(): Int = hashCode
 
@@ -1079,7 +1096,7 @@ private constructor(
                     return true
                 }
 
-                return /* spotless:off */ other is Status && value == other.value /* spotless:on */
+                return other is Status && value == other.value
             }
 
             override fun hashCode() = value.hashCode()
@@ -1092,12 +1109,27 @@ private constructor(
                 return true
             }
 
-            return /* spotless:off */ other is FailedSchemaGenerationResponse && error == other.error && generatedSchema == other.generatedSchema && refinedPrompt == other.refinedPrompt && requestId == other.requestId && status == other.status && userPrompt == other.userPrompt && additionalProperties == other.additionalProperties /* spotless:on */
+            return other is FailedSchemaGenerationResponse &&
+                error == other.error &&
+                generatedSchema == other.generatedSchema &&
+                refinedPrompt == other.refinedPrompt &&
+                requestId == other.requestId &&
+                status == other.status &&
+                userPrompt == other.userPrompt &&
+                additionalProperties == other.additionalProperties
         }
 
-        /* spotless:off */
-        private val hashCode: Int by lazy { Objects.hash(error, generatedSchema, refinedPrompt, requestId, status, userPrompt, additionalProperties) }
-        /* spotless:on */
+        private val hashCode: Int by lazy {
+            Objects.hash(
+                error,
+                generatedSchema,
+                refinedPrompt,
+                requestId,
+                status,
+                userPrompt,
+                additionalProperties,
+            )
+        }
 
         override fun hashCode(): Int = hashCode
 

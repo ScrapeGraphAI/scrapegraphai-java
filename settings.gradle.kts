@@ -1,7 +1,14 @@
 rootProject.name = "scrapegraphai-java-root"
 
-include("scrapegraphai-java")
-include("scrapegraphai-java-client-okhttp")
-include("scrapegraphai-java-core")
-include("scrapegraphai-java-proguard-test")
-include("scrapegraphai-java-example")
+val projectNames = rootDir.listFiles()
+    ?.asSequence()
+    .orEmpty()
+    .filter { file ->
+        file.isDirectory &&
+        file.name.startsWith("scrapegraphai-java") &&
+        file.listFiles()?.asSequence().orEmpty().any { it.name == "build.gradle.kts" }
+    }
+    .map { it.name }
+    .toList()
+println("projects: $projectNames")
+projectNames.forEach { include(it) }

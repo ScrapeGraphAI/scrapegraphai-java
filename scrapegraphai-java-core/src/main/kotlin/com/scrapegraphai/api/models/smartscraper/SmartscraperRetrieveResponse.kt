@@ -108,10 +108,12 @@ private constructor(
             return true
         }
 
-        return /* spotless:off */ other is SmartscraperRetrieveResponse && completedSmartscraper == other.completedSmartscraper && failedSmartscraper == other.failedSmartscraper /* spotless:on */
+        return other is SmartscraperRetrieveResponse &&
+            completedSmartscraper == other.completedSmartscraper &&
+            failedSmartscraper == other.failedSmartscraper
     }
 
-    override fun hashCode(): Int = /* spotless:off */ Objects.hash(completedSmartscraper, failedSmartscraper) /* spotless:on */
+    override fun hashCode(): Int = Objects.hash(completedSmartscraper, failedSmartscraper)
 
     override fun toString(): String =
         when {

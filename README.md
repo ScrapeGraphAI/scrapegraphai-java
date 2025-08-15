@@ -2,8 +2,8 @@
 
 <!-- x-release-please-start-version -->
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.scrapegraphai.api/scrapegraphai-java)](https://central.sonatype.com/artifact/com.scrapegraphai.api/scrapegraphai-java/0.0.2)
-[![javadoc](https://javadoc.io/badge2/com.scrapegraphai.api/scrapegraphai-java/0.0.2/javadoc.svg)](https://javadoc.io/doc/com.scrapegraphai.api/scrapegraphai-java/0.0.2)
+[![Maven Central](https://img.shields.io/maven-central/v/com.scrapegraphai.api/scrapegraphai-java)](https://central.sonatype.com/artifact/com.scrapegraphai.api/scrapegraphai-java/0.1.0)
+[![javadoc](https://javadoc.io/badge2/com.scrapegraphai.api/scrapegraphai-java/0.1.0/javadoc.svg)](https://javadoc.io/doc/com.scrapegraphai.api/scrapegraphai-java/0.1.0)
 
 <!-- x-release-please-end -->
 
@@ -13,7 +13,7 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 <!-- x-release-please-start-version -->
 
-The REST API documentation can be found on [scrapegraphai.com](https://scrapegraphai.com). Javadocs are available on [javadoc.io](https://javadoc.io/doc/com.scrapegraphai.api/scrapegraphai-java/0.0.2).
+The REST API documentation can be found on [scrapegraphai.com](https://scrapegraphai.com). Javadocs are available on [javadoc.io](https://javadoc.io/doc/com.scrapegraphai.api/scrapegraphai-java/0.1.0).
 
 <!-- x-release-please-end -->
 
@@ -24,7 +24,7 @@ The REST API documentation can be found on [scrapegraphai.com](https://scrapegra
 ### Gradle
 
 ```kotlin
-implementation("com.scrapegraphai.api:scrapegraphai-java:0.0.2")
+implementation("com.scrapegraphai.api:scrapegraphai-java:0.1.0")
 ```
 
 ### Maven
@@ -33,7 +33,7 @@ implementation("com.scrapegraphai.api:scrapegraphai-java:0.0.2")
 <dependency>
   <groupId>com.scrapegraphai.api</groupId>
   <artifactId>scrapegraphai-java</artifactId>
-  <version>0.0.2</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
